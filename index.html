@@ -147,7 +147,7 @@
             cursor: pointer;
         }
 
-        /* ===== HERO SECTION WITH PHOTO ===== */
+        /* ===== HERO SECTION - SPLIT LAYOUT ===== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -189,16 +189,32 @@
         }
 
         .hero-content {
-            max-width: 900px;
-            text-align: center;
+            max-width: 1100px;
+            width: 100%;
             position: relative;
             z-index: 2;
         }
 
-        /* ===== PROFILE PHOTO - FRONT & CENTER ===== */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-left {
+            text-align: left;
+        }
+
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ===== PROFILE PHOTO - RIGHT SIDE ===== */
         .hero-photo-wrapper {
-            margin-bottom: 28px;
-            animation: fadeInUp 0.8s ease-out;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
         }
 
         .hero-photo-frame {
@@ -217,12 +233,11 @@
 
         .hero-photo {
             display: block;
-            max-width: 280px;
+            max-width: 320px;
             width: 100%;
             height: auto;
             border-radius: 18px;
             background: var(--bg-card);
-            /* No object-fit: cover - keeps actual size/aspect ratio */
         }
 
         .badge {
@@ -237,7 +252,7 @@
             font-weight: 600;
             color: var(--primary);
             margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease-out 0.1s both;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .badge .dot {
@@ -254,12 +269,12 @@
         }
 
         .hero h1 {
-            font-size: clamp(36px, 6vw, 72px);
+            font-size: clamp(32px, 5vw, 56px);
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 16px;
             letter-spacing: -2px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
         }
 
         .hero h1 .gradient-text {
@@ -270,26 +285,25 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(18px, 2.5vw, 24px);
+            font-size: clamp(16px, 2vw, 20px);
             color: var(--text-muted);
-            margin-bottom: 36px;
-            animation: fadeInUp 0.8s ease-out 0.3s both;
+            margin-bottom: 28px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         .hero-stats {
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 36px;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+            gap: 32px;
+            margin-bottom: 28px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
         }
 
         .stat-item {
-            text-align: center;
+            text-align: left;
         }
 
         .stat-number {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -298,27 +312,26 @@
         }
 
         .stat-label {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
             font-weight: 500;
         }
 
         .hero-buttons {
             display: flex;
-            justify-content: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.5s both;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 32px;
+            padding: 12px 28px;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             text-decoration: none;
             transition: all 0.3s;
             cursor: pointer;
@@ -992,17 +1005,19 @@
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            .hero-stats { gap: 24px; }
+            .hero-split { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-left { text-align: center; }
+            .hero-stats { justify-content: center; gap: 24px; }
             .stat-number { font-size: 24px; }
+            .hero-buttons { justify-content: center; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .contact-grid { grid-template-columns: 1fr; }
             .timeline::before { left: 20px; }
             .timeline-item { padding-left: 60px; }
             .timeline-icon { width: 40px; height: 40px; font-size: 16px; }
             .skills-grid { grid-template-columns: 1fr; }
-            .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; max-width: 300px; justify-content: center; }
-            .hero-photo { max-width: 220px; }
+            .hero-photo { max-width: 260px; }
         }
 
         .mobile-menu {
@@ -1081,55 +1096,63 @@
         </a>
     </div>
 
-    <!-- Hero Section with Photo at FRONT -->
+    <!-- Hero Section - SPLIT LAYOUT: Text LEFT, Photo RIGHT -->
     <section class="hero" id="home">
         <div class="hero-content">
+            <div class="hero-split">
 
-            <!-- PROFILE PHOTO - FRONT & CENTER -->
-            <div class="hero-photo-wrapper">
-                <div class="hero-photo-frame">
-                    <img src="profile1.jpeg" alt="Christo Franklin Jose" class="hero-photo">
+                <!-- LEFT: Name, Designation, Stats, Buttons -->
+                <div class="hero-left">
+                    <div class="badge">
+                        <span class="dot"></span>
+                        Available for Opportunities • 2 Months Notice
+                    </div>
+                    <h1>
+                        Christo Franklin <span class="gradient-text">Jose</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Senior Inside Sales Executive | B2B Sales Specialist | Global Markets Expert
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2x</div>
+                            <div class="stat-label">Revenue Target</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Global Markets</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Industries</div>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="tel:+919496284877" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> +91 94962 84877
+                        </a>
+                        <a href="mailto:christofranklin535@gmail.com" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Email Me
+                        </a>
+                        <a href="https://linkedin.com/in/christo-franklin-jose-92667a177" target="_blank" class="btn btn-secondary">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="badge">
-                <span class="dot"></span>
-                Available for Opportunities • 2 Months Notice
-            </div>
-            <h1>
-                Christo Franklin <span class="gradient-text">Jose</span>
-            </h1>
-            <p class="hero-subtitle">
-                Senior Inside Sales Executive | B2B Sales Specialist | Global Markets Expert
-            </p>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Years Experience</div>
+                <!-- RIGHT: Profile Photo -->
+                <div class="hero-right">
+                    <div class="hero-photo-wrapper">
+                        <div class="hero-photo-frame">
+                            <img src="profile1.jpeg" alt="Christo Franklin Jose" class="hero-photo">
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">2x</div>
-                    <div class="stat-label">Revenue Target</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Global Markets</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Industries</div>
-                </div>
-            </div>
-            <div class="hero-buttons">
-                <a href="tel:+919496284877" class="btn btn-primary">
-                    <i class="fas fa-phone"></i> +91 94962 84877
-                </a>
-                <a href="mailto:christofranklin535@gmail.com" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i> Email Me
-                </a>
-                <a href="https://linkedin.com/in/christo-franklin-jose-92667a177" target="_blank" class="btn btn-secondary">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
+
             </div>
         </div>
     </section>
